@@ -45,23 +45,22 @@ export default function Home() {
     }
   ];
 
-  // Definindo a transição separadamente com tipo correto
-  const springTransition: Transition = {
-  type: 'spring' as const,  // <-- aqui o 'as const' é essencial
+const springTransition = {
+  type: 'spring' as const,
   stiffness: 300,
   damping: 20
 };
 
-  // Ajuste do iconVariants com tipagem Variants e usando springTransition
-  const iconVariants: Variants = {
-    initial: { scale: 1, color: 'white', filter: 'drop-shadow(0 0 0 transparent)' },
-    hover: {
-      scale: 1.25,
-      color: '#fde047',
-      filter: 'drop-shadow(0 0 6px #fde047)',
-      transition: springTransition
-    }
-  };
+const iconVariants: Variants = {
+  initial: { scale: 1, color: 'white', filter: 'drop-shadow(0 0 0 transparent)' },
+  hover: {
+    scale: 1.25,
+    color: '#fde047',
+    filter: 'drop-shadow(0 0 6px #fde047)',
+    transition: springTransition
+  }
+};
+
 
   const certificates = [
     { title: 'SmartData - Inglês', description: 'Certificado de proficiência em inglês com foco em tecnologia e comunicação.' },
