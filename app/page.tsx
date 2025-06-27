@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion'; // Importei Variants e Transition
 import { Code, Database, Briefcase, Zap } from 'lucide-react';
 
 const whatsappNumber = '+5511987503790';
@@ -45,13 +45,21 @@ export default function Home() {
     }
   ];
 
-  const iconVariants = {
+  // Definindo a transição separadamente com tipo correto
+  const springTransition: Transition = {
+  type: 'spring' as const,  // <-- aqui o 'as const' é essencial
+  stiffness: 300,
+  damping: 20
+};
+
+  // Ajuste do iconVariants com tipagem Variants e usando springTransition
+  const iconVariants: Variants = {
     initial: { scale: 1, color: 'white', filter: 'drop-shadow(0 0 0 transparent)' },
     hover: {
       scale: 1.25,
       color: '#fde047',
       filter: 'drop-shadow(0 0 6px #fde047)',
-      transition: { type: 'spring', stiffness: 300, damping: 20 }
+      transition: springTransition
     }
   };
 
@@ -111,7 +119,7 @@ export default function Home() {
   const [showFeedback, setShowFeedback] = useState(false);
 
   function handleOptionClick(index: number) {
-    if (selectedOption !== null) return; // já respondeu
+    if (selectedOption !== null) return; 
     setSelectedOption(index);
     setShowFeedback(true);
     setTimeout(() => {
@@ -289,6 +297,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       {/* Mini quiz interativo */}
       <section className="py-16 px-6 max-w-3xl mx-auto bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold mb-6 text-center text-black">Quiz Rápido - Teste seus conhecimentos!</h2>
